@@ -11,7 +11,7 @@ import { UserModule } from './user/user.module';
 @Module({
   imports: [
     UserModule,
-    // TypeOrmModule.forRoot(TypeOrmConfig),
+    TypeOrmModule.forRoot(TypeOrmConfig),
   ],
   controllers: [AppController],
   providers: [AppService],
