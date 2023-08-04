@@ -8,10 +8,10 @@ export class User extends BaseEntity {
   @Column()
   fullName: string;
 
-  @Column()
+  @Column({ unique: true})
   email: String;
 
-  @Column()
+  @Column({ unique: true})
   phonenumber: String;
 
   @Column()
