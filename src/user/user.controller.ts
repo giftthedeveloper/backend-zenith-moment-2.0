@@ -1,21 +1,25 @@
 // src/users/users.controller.ts
 
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, HttpCode, UsePipes, ValidationPipe } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user.entity';
+import { CreateUserDto } from './dto/dto.createuser';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UserService) {}
+  constructor(private  usersService: UserService) {}
 
-  @Get()
+  @Get('/users')
   async findAll(): Promise<User[]> {
     return this.usersService.findAll();
   }
 
-  @Post()
-  async create(@Body() user: User): Promise<User> {
-    return this.usersService.create(user);
+  @Post('/user')
+  @HttpCode(200)
+  @UsePipes(ValidationPipe)
+  
+  async createUser(@Body() user: CreateUserDto){
+    return await this.usersService.createNewUser(user);
   }
 
 }
