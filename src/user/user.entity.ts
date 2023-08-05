@@ -8,10 +8,10 @@ export class User extends BaseEntity {
   @Column()
   fullName: string;
 
-  @Column({ unique: true})
+  @Column({ unique: true })
   email: String;
 
-  @Column({ unique: true})
+  @Column({ unique: true })
   phonenumber: String;
 
   @Column()
@@ -19,11 +19,16 @@ export class User extends BaseEntity {
 
   @Column()
   pickup_point: String;
-  
+
   @Column()
   expected_arrival_date: String;
 
+  @Column({ default: false }) 
+  is_volunteer: boolean; 
+
+  @Column({ nullable: true })
+  department: string; 
+
   @Column()
   expectations: String;
-
 }
