@@ -1,7 +1,7 @@
 import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Admin } from '../admin/admin.entity';
+import { Admin } from './admin.entity';
 import { Repository } from 'typeorm';
 import { CreateAdminDto } from './dto/admin.signup.dto';
 
