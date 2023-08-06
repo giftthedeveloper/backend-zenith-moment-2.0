@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 #orm config file
-typeormconfig.ts
+# typeormconfig.ts
