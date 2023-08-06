@@ -9,6 +9,9 @@ export class CreateUserDto {
     @IsNotEmpty({message: 'Users must be male or female '})
     gender: string
 
+    @IsNotEmpty({message: 'Users must  have referral code '})
+    referral_code: string
+
     @IsNotEmpty({message: 'Users must specify a pickup point '})
     pickup_point: string
 

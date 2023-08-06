@@ -10,7 +10,7 @@ export const TypeOrmConfig: TypeOrmModuleOptions = {
     type: 'postgres', 
     url: process.env.DB_URL, 
     entities: [User, Admin],
-    synchronize: process.env.SYNCHRONIZE === 'false', // Parse SYNCHRONIZE as a boolean
+    synchronize: process.env.SYNCHRONIZE === 'true', // Parse SYNCHRONIZE as a boolean
 };
 
 export const SECRETKEY: string = process.env.SECRET_KEY;
