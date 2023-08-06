@@ -6,10 +6,6 @@ export class CreateUserDto {
 
     email: string;
 
-    @IsNotEmpty({message: 'Phone number  should not be less than 10'})
-    @Length(10, 15)
-    phonenumber: string
-
     @IsNotEmpty({message: 'Users must be male or female '})
     gender: string
 
