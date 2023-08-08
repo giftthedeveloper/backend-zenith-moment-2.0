@@ -16,7 +16,6 @@ export class User extends BaseEntity {
 
   @Column()
   referral_code: String;
-
   @Column()
   gender: String;
 

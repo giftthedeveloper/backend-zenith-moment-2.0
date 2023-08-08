@@ -2,9 +2,25 @@ import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestj
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { CreateUserDto } from './dto/dto.createuser';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as ejs from 'ejs';
+import * as nodemailer from 'nodemailer';
+
 @Injectable()
 export class UserService {
-  constructor() {}
+  private readonly transporter;
+  private readonly templatesDir = path.join(__dirname, '..', '..', 'src', 'email'); // Adjust the path based on your project structure
+
+  constructor() {
+    this.transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: 'souledouteam@gmail.com',
+        pass: 'soulution',
+      },
+    });
+  }
 
   async findAll(): Promise<User[]> {
     return User.find();
@@ -22,7 +38,33 @@ export class UserService {
       );
     }
 
-    return User.save(user);
+    const newUser = await User.save(user);
+
+    // Read and render email template
+    const templatePath = path.join(this.templatesDir, 'register_mail.html');
+    const templateContent = fs.readFileSync(templatePath, 'utf-8');
+    const renderedTemplate = ejs.render(templateContent, {
+      username: newUser.fullName,
+      app_name: 'Your App Name', // Customize with your app name
+    });
+
+    // Send customized email to the new user
+    const mailOptions = {
+      from: 'souledouteam@gmail.com',
+      to: newUser.email,
+      subject: 'Zenith Moment Registration Successful!',
+      html: renderedTemplate,
+    };
+
+    this.transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error('Error sending email:', error);
+      } else {
+        console.log('Email sent:', info.response);
+      }
+    });
+
+    return newUser;
   }
 
   async deleteUser(id: number): Promise<void> {

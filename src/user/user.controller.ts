@@ -20,6 +20,7 @@ export class UsersController {
   
   async createUser(@Body() user: CreateUserDto){
     try {
+      
       return await this.usersService.createNewUser(user);
     } catch (error) {
       if (error.code === '23505') { // TypeORM's duplicate key violation error code
