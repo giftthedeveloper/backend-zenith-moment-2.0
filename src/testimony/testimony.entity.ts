@@ -8,13 +8,16 @@ export class Testimony extends BaseEntity {
     @Column()
     name: string;
 
+    @Column({default: 'Anonymous'})
+    display_name: string;
+
     @Column()
     testimony: string;
 
-    @Column()
+    @Column({ nullable: true })
     phone: string;
 
-    @Column()
+    @Column({ default: 'Zenith moment 2.0'})
     event_edition: String;
 
     @Column({ default: false})

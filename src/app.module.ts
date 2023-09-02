@@ -13,8 +13,8 @@ import { TestimonyModule } from './testimony/testimony.module';
   imports: [
     UserModule,
     AdminModule,
-    TypeOrmModule.forRoot(typeOrmConfig),
     TestimonyModule,
+    TypeOrmModule.forRoot(typeOrmConfig),
   ],
   controllers: [AppController, TestimonyController],
   providers: [AppService, TestimonyService],
