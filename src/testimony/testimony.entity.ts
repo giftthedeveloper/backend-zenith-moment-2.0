@@ -11,7 +11,8 @@ export class Testimony extends BaseEntity {
     @Column({default: 'Anonymous'})
     display_name: string;
 
-    @Column()
+    @Column({unique: true})
+    // @Column()
     testimony: string;
 
     @Column({ nullable: true })
