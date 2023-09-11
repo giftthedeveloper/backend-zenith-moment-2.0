@@ -8,6 +8,9 @@ import { AdminModule } from './admin/admin.module';
 import { TestimonyService } from './testimony/testimony.service';
 import { TestimonyController } from './testimony/testimony.controller';
 import { TestimonyModule } from './testimony/testimony.module';
+import { FeedbackService } from './feedback/feedback.service';
+import { FeedbackController } from './feedback/feedback.controller';
+import { FeedbackModule } from './feedback/feedback.module';
 
 @Module({
   imports: [
@@ -15,8 +18,9 @@ import { TestimonyModule } from './testimony/testimony.module';
     AdminModule,
     TestimonyModule,
     TypeOrmModule.forRoot(typeOrmConfig),
+    FeedbackModule,
   ],
-  controllers: [AppController, TestimonyController],
-  providers: [AppService, TestimonyService],
+  controllers: [AppController, TestimonyController, FeedbackController],
+  providers: [AppService, TestimonyService, FeedbackService],
 })
 export class AppModule {}

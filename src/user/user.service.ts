@@ -15,7 +15,7 @@ export class UserService {
   }
 
   async createNewUser(user: CreateUserDto): Promise<User> {
-    const allowedReferralCodes = ['SOF101'];
+    const allowedReferralCodes = ['NONE67'];
     if (!allowedReferralCodes.includes(user.referral_code)) {
       throw new HttpException(
         {
